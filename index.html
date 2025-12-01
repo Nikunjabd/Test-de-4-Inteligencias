@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Compás Sama Sana - Test de las 4 Inteligencias</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Fuente -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Lato', sans-serif; }
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #D97706; /* Amber 600 */
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .btn-grad {
+            background-image: linear-gradient(to right, #D97706 0%, #F59E0B 51%, #D97706 100%);
+            transition: 0.5s;
+            background-size: 200% auto;
+        }
+        .btn-grad:hover {
+            background-position: right center;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-amber-100">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <!-- Espacio para el LOGO -->
+                <div class="h-12 w-auto overflow-hidden">
+                    <!-- Nota para el usuario: Reemplaza 'logo_placeholder.png' con la ruta real de tu archivo 'logo CSS.png' -->
+                    <img src="logo_CSS.png" alt="Logo Sama Sana" class="h-full object-contain" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='block'">
+                    <div id="text-logo" style="display:none" class="text-2xl font-black text-amber-600 tracking-tight">
+                        SAMA SANA
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs font-bold text-stone-400 uppercase tracking-widest hidden sm:block">
+                Evaluación de Inteligencias
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Intro -->
+    <main class="max-w-3xl mx-auto px-4 py-10" id="top">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-black text-stone-800 mb-4">
+                ¿Cuál de tus 4 Inteligencias <br><span class="text-amber-600">necesita atención hoy?</span>
+            </h1>
+            <p class="text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed">
+                La salud real no es solo comer bien. Es el equilibrio entre lo <strong>Nutricional, Intelectual, Emocional y Espiritual</strong>. 
+                Responde con honestidad para generar tu hoja de ruta personalizada dentro de la comunidad.
+            </p>
+        </div>
+
+        <form id="intelligenceForm" class="space-y-12">
+
+            <!-- 1. INTELIGENCIA NUTRICIONAL (AHARA) -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 card-hover relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-green-500"></div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-700 font-bold text-xl">1</div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-stone-800">Inteligencia Nutricional</h2>
+                        <p class="text-sm text-stone-500 font-medium uppercase tracking-wide">Ahara - Tu Combustible</p>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- P1 -->
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-2">Digestión y Agni (Fuego Digestivo)</label>
+                        <p class="text-sm text-stone-500 mb-3">¿Sientes tu digestión ligera y eficiente, o sufres de hinchazón, gases y pesadez frecuentemente?</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-bold text-stone-400 w-12 text-right">Pesada</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="q_nut_1" oninput="updateVal('v_nut_1', this.value)">
+                            <span class="text-xs font-bold text-stone-400 w-12">Ligera</span>
+                        </div>
+                        <div class="text-center text-amber-600 font-bold mt-1" id="v_nut_1">5</div>
+                    </div>
+                    <!-- P2 -->
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-2">Energía Post-Comida</label>
+                        <p class="text-sm text-stone-500 mb-3">¿Después de comer sientes energía renovada o te invade el sueño y el letargo (signo de toxinas/Ama)?</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-bold text-stone-400 w-12 text-right">Sueño</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="q_nut_2" oninput="updateVal('v_nut_2', this.value)">
+                            <span class="text-xs font-bold text-stone-400 w-12">Energía</span>
+                        </div>
+                        <div class="text-center text-amber-600 font-bold mt-1" id="v_nut_2">5</div>
+                    </div>
+                    <!-- P3 -->
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-2">Relación con el Alimento</label>
+                        <p class="text-sm text-stone-500 mb-3">¿Te alimentas con conciencia y a horarios regulares, o comes por ansiedad y desorden?</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-bold text-stone-400 w-12 text-right">Caos</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="q_nut_3" oninput="updateVal('v_nut_3', this.value)">
+                            <span class="text-xs font-bold text-stone-400 w-12">Orden</span>
+                        </div>
+                        <div class="text-center text-amber-600 font-bold mt-1" id="v_nut_3">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. INTELIGENCIA INTELECTUAL (VIHARA) -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 card-hover relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-blue-500"></div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xl">2</div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-stone-800">Inteligencia Intelectual</h2>
+                        <p class="text-sm text-stone-500 font-medium uppercase tracking-wide">Vihara - Tus Rutinas y Hábitos</p>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- P1 -->
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-2">Rutinas y Ritmos</label>
+                        <p class="text-sm text-stone-500 mb-3">¿Tienes rutinas diarias que te dan estructura (sueño, horarios), o vives improvisando tu día?</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-bold text-stone-400 w-12 text-right">Caos</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="q_int_1" oninput="updateVal('v_int_1', this.value)">
+                            <span class="text-xs font-bold text-stone-400 w-12">Estructura</span>
+                        </div>
+                        <div class="text-center text-amber-600 font-bold mt-1" id="v_int_1">5</div>
+                    </div>
+                    <!-- P2 -->
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-2">Movimiento Consciente</label>
+                        <p class="text-sm text-stone-500 mb-3">¿Realizas actividad física regular que disfrutas y fortalece tu cuerpo?</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-bold text-stone-400 w-12 text-right">Sedentario</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="q_int_2" oninput="updateVal('v_int_2', this.value)">
+                            <span class="text-xs font-bold text-stone-400 w-12">Activo</span>
+                        </div>
+                        <div class="text-center text-amber-600 font-bold mt-1" id="v_int_2">5</div>
+                    </div>
+                    <!-- P3 -->
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-2">Claridad Mental</label>
+                        <p class="text-sm text-stone-500 mb-3">¿Te sientes capaz de enfocarte y aprender, o sientes "niebla mental" y dispersión constante?</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-bold text-stone-400 w-12 text-right">Niebla</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="q_int_3" oninput="updateVal('v_int_3', this.value)">
+                            <span class="text-xs font-bold text-stone-400 w-12">Claridad</span>
+                        </div>
+                        <div class="text-center text-amber-600 font-bold mt-1" id="v_int_3">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. INTELIGENCIA EMOCIONAL (NIDRA) -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 card-hover relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-pink-500"></div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-700 font-bold text-xl">3</div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-stone-800">Inteligencia Emocional</h2>
+                        <p class="text-sm text-stone-500 font-medium uppercase tracking-wide">Nidra - Emociones y Descanso</p>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- P1 -->
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-2">Gestión del Estrés</label>
+                        <p class="text-sm text-stone-500 mb-3">¿Tienes herramientas para volver a la calma cuando te estresas, o te quedas "enganchado/a" en la ansiedad?</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-bold text-stone-400 w-12 text-right">Ansiedad</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="q_emo_1" oninput="updateVal('v_emo_1', this.value)">
+                            <span class="text-xs font-bold text-stone-400 w-12">Calma</span>
+                        </div>
+                        <div class="text-center text-amber-600 font-bold mt-1" id="v_emo_1">5</div>
+                    </div>
+                    <!-- P2 -->
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-2">Calidad de Vínculos</label>
+                        <p class="text-sm text-stone-500 mb-3">¿Tus relaciones cercanas te nutren y apoyan, o te drenan energía?</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-bold text-stone-400 w-12 text-right">Drenan</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="q_emo_2" oninput="updateVal('v_emo_2', this.value)">
+                            <span class="text-xs font-bold text-stone-400 w-12">Nutren</span>
+                        </div>
+                        <div class="text-center text-amber-600 font-bold mt-1" id="v_emo_2">5</div>
+                    </div>
+                    <!-- P3 -->
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-2">Descanso Profundo (Nidra)</label>
+                        <p class="text-sm text-stone-500 mb-3">¿Duermes profundamente y despiertas en paz, o tu mente sigue activa por la noche?</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-bold text-stone-400 w-12 text-right">Insomnio</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="q_emo_3" oninput="updateVal('v_emo_3', this.value)">
+                            <span class="text-xs font-bold text-stone-400 w-12">Paz</span>
+                        </div>
+                        <div class="text-center text-amber-600 font-bold mt-1" id="v_emo_3">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. INTELIGENCIA ESPIRITUAL (MANAS) -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 card-hover relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-violet-500"></div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center text-violet-700 font-bold text-xl">4</div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-stone-800">Inteligencia Espiritual</h2>
+                        <p class="text-sm text-stone-500 font-medium uppercase tracking-wide">Manas - Propósito y Conexión</p>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- P1 -->
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-2">Claridad de Propósito</label>
+                        <p class="text-sm text-stone-500 mb-3">¿Tienes un "por qué" claro que te motiva a levantarte cada mañana (Ikigai)?</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-bold text-stone-400 w-12 text-right">Perdido</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="q_esp_1" oninput="updateVal('v_esp_1', this.value)">
+                            <span class="text-xs font-bold text-stone-400 w-12">Claro</span>
+                        </div>
+                        <div class="text-center text-amber-600 font-bold mt-1" id="v_esp_1">5</div>
+                    </div>
+                    <!-- P2 -->
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-2">Conexión Interior</label>
+                        <p class="text-sm text-stone-500 mb-3">¿Dedicas tiempo al silencio, la meditación o la oración para conectarte contigo mismo/a?</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-bold text-stone-400 w-12 text-right">Nunca</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="q_esp_2" oninput="updateVal('v_esp_2', this.value)">
+                            <span class="text-xs font-bold text-stone-400 w-12">Diario</span>
+                        </div>
+                        <div class="text-center text-amber-600 font-bold mt-1" id="v_esp_2">5</div>
+                    </div>
+                    <!-- P3 -->
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-2">Paz Mental (Sama)</label>
+                        <p class="text-sm text-stone-500 mb-3">¿En general, sientes una sensación de paz de fondo, independientemente de los problemas externos?</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-bold text-stone-400 w-12 text-right">Ruido</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="q_esp_3" oninput="updateVal('v_esp_3', this.value)">
+                            <span class="text-xs font-bold text-stone-400 w-12">Paz</span>
+                        </div>
+                        <div class="text-center text-amber-600 font-bold mt-1" id="v_esp_3">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center py-8">
+                <button type="button" onclick="calculateIntelligence()" class="btn-grad text-white font-black text-lg py-4 px-12 rounded-full shadow-xl transform transition hover:scale-105 active:scale-95">
+                    GENERAR MI MAPA SAMA SANA
+                </button>
+            </div>
+
+        </form>
+
+        <!-- RESULTADOS (Oculto) -->
+        <div id="resultSection" class="hidden animate-fade-in-up">
+            
+            <div class="bg-stone-900 text-white rounded-3xl p-8 shadow-2xl mb-12">
+                <h2 class="text-3xl font-bold text-center mb-2">Tu Mapa de Inteligencias</h2>
+                <p class="text-stone-400 text-center mb-8">Visualiza dónde está tu equilibrio y dónde está tu oportunidad.</p>
+                
+                <div class="max-w-md mx-auto bg-stone-800 rounded-xl p-4 mb-8">
+                    <canvas id="radarChart"></canvas>
+                </div>
+
+                <!-- DIAGNÓSTICO PRINCIPAL -->
+                <div class="bg-stone-800 rounded-xl p-6 border-l-4 border-amber-500">
+                    <h3 class="text-xl font-bold text-amber-500 mb-2">Tu Prioridad #1: <span id="priorityArea" class="text-white">...</span></h3>
+                    <p class="text-stone-300 mb-4" id="priorityMessage">
+                        ...
+                    </p>
+                    <div class="bg-stone-900/50 p-4 rounded-lg">
+                        <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">ACCIÓN RECOMENDADA EN LA COMUNIDAD:</p>
+                        <p class="text-white font-medium flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span id="actionStep">...</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center space-y-4">
+                 <button onclick="window.print()" class="text-stone-500 font-bold hover:text-stone-800 underline">
+                    Guardar mis resultados (PDF)
+                </button>
+                <p class="text-sm text-stone-400 max-w-lg mx-auto">
+                    Comparte una captura de tu gráfico en el grupo de la comunidad para que el Dr. Nicasio pueda darte feedback en la próxima sesión en vivo.
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-stone-100 py-10 mt-12 border-t border-stone-200">
+        <div class="text-center">
+            <p class="font-bold text-stone-700">Comunidad Sama Sana</p>
+            <p class="text-xs text-stone-400 mt-2">Dr. Nicasio Cavilla • Sanación Activa</p>
+        </div>
+    </footer>
+
+    <script>
+        function updateVal(id, val) {
+            document.getElementById(id).innerText = val;
+        }
+
+        let radarChart = null;
+
+        function calculateIntelligence() {
+            // Recoger valores
+            const getGroupAvg = (prefix) => {
+                let sum = 0;
+                for(let i=1; i<=3; i++) {
+                    sum += parseInt(document.getElementById(`q_${prefix}_${i}`).value);
+                }
+                return (sum / 3).toFixed(1);
+            };
+
+            const nut = parseFloat(getGroupAvg('nut'));
+            const int = parseFloat(getGroupAvg('int'));
+            const emo = parseFloat(getGroupAvg('emo'));
+            const esp = parseFloat(getGroupAvg('esp'));
+
+            // Determinar prioridad (el más bajo)
+            const scores = [
+                { id: 'nut', name: 'Inteligencia Nutricional', val: nut, 
+                  msg: 'Tu fuego digestivo (Agni) necesita atención urgente. Si no digieres bien, no nutres ni tu cuerpo ni tu mente.',
+                  action: 'Ve al Módulo 1: "Recuperando tu Agni" y comienza el protocolo de desintoxicación suave.' },
+                { id: 'int', name: 'Inteligencia Intelectual', val: int, 
+                  msg: 'Tus rutinas están desordenadas. El cuerpo necesita ritmo para sanar. Sin estructura (Vihara), la energía se dispersa.',
+                  action: 'Descarga la "Planilla de Rutinas Circadianas" y comprométete a acostarte a la misma hora por 7 días.' },
+                { id: 'emo', name: 'Inteligencia Emocional', val: emo, 
+                  msg: 'El estrés o los vínculos están drenando tu vitalidad. Necesitas priorizar el descanso (Nidra) y poner límites sanos.',
+                  action: 'Ve a la sección de "Meditaciones Guiadas" y realiza la práctica de "Limpieza Emocional" antes de dormir.' },
+                { id: 'esp', name: 'Inteligencia Espiritual', val: esp, 
+                  msg: 'Falta un propósito claro (Manas) que dirija tu energía. Cuando el "para qué" es fuerte, el "cómo" se vuelve fácil.',
+                  action: 'Reserva la próxima sesión en vivo de preguntas y respuestas para trabajar tu Propósito con el Dr. Nicasio.' }
+            ];
+
+            // Ordenar ascendente para encontrar el menor
+            scores.sort((a, b) => a.val - b.val);
+            const priority = scores[0];
+
+            // Renderizar Textos
+            document.getElementById('priorityArea').innerText = priority.name;
+            document.getElementById('priorityMessage').innerText = priority.msg;
+            document.getElementById('actionStep').innerText = priority.action;
+
+            // Mostrar Resultados
+            const resDiv = document.getElementById('resultSection');
+            resDiv.classList.remove('hidden');
+            resDiv.scrollIntoView({behavior: 'smooth'});
+
+            // Gráfico
+            if(radarChart) radarChart.destroy();
+            
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            radarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Nutricional', 'Intelectual', 'Emocional', 'Espiritual'],
+                    datasets: [{
+                        label: 'Nivel de Desarrollo',
+                        data: [nut, int, emo, esp],
+                        backgroundColor: 'rgba(217, 119, 6, 0.4)', // Amber
+                        borderColor: '#F59E0B',
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#D97706',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255,255,255,0.2)' },
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            pointLabels: {
+                                color: 'white',
+                                font: { size: 14, weight: 'bold', family: 'Lato' }
+                            },
+                            ticks: {
+                                backdropColor: 'transparent',
+                                color: 'rgba(255,255,255,0.5)'
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
