@@ -237,8 +237,7 @@
                         </div>
                         <div class="text-center text-amber-600 font-bold mt-2 text-xl" id="v_emo_2">5</div>
                     </div>
-                     <!-- P3 -->
-                    <!-- CAMBIO SOLICITADO: Nueva pregunta con etiquetas Impedimento vs Aliadas -->
+                    <!-- P3 -->
                     <div>
                         <label class="block text-lg text-stone-800 font-bold mb-2">Impacto de las Emociones</label>
                         <p class="text-stone-500 mb-4 leading-relaxed">¿Sientes que tus emociones son un impedimento para lograr tus objetivos o para vincularte con los demás?</p>
@@ -323,10 +322,10 @@
                 <!-- NUEVA SECCIÓN: RUTA ORDENADA -->
                 <div class="max-w-3xl mx-auto">
                     <div class="bg-amber-600/20 border border-amber-600/50 rounded-xl p-6 mb-8 text-center">
-                        <p class="text-amber-400 font-bold text-lg mb-2">💡 Sugerencia de Planificación</p>
+                        <p class="text-amber-400 font-bold text-lg mb-2">💡 Tu Plan de Acción</p>
                         <p class="text-stone-300">
-                            Aunque puedes trabajar varias áreas en simultáneo, te sugerimos dedicar aproximadamente 
-                            <strong>3 meses de enfoque principal</strong> a cada inteligencia en este orden para construir bases sólidas.
+                            Te sugerimos dedicar aproximadamente <strong>3 meses de enfoque principal</strong> a cada inteligencia en este orden. 
+                            ¡No te preocupes! Irás integrando hábitos de todas las áreas simultáneamente, pero tu <strong>foco de estudio</strong> será uno a la vez.
                         </p>
                     </div>
 
@@ -401,8 +400,8 @@
                     color: 'text-green-400',
                     bg: 'bg-green-500/10',
                     border: 'border-green-500/30',
-                    msg: 'Tu fuego digestivo (Agni) necesita atención. Si no digieres bien, no nutres ni tu cuerpo ni tu mente.',
-                    action: 'Comienza por establecer horarios para tus comidas y suma algún tónico digestivo' 
+                    msg: 'Tu fuego digestivo (Agni) es la base. Si no digieres bien, no nutres ni tu cuerpo ni tu mente.',
+                    action: 'Ve al Módulo 1: "Recuperando tu Agni" y comienza el protocolo de desintoxicación suave.' 
                 },
                 { 
                     id: 'int', 
@@ -411,8 +410,8 @@
                     color: 'text-blue-400',
                     bg: 'bg-blue-500/10',
                     border: 'border-blue-500/30',
-                    msg: 'Tus rutinas requieren orden. El cuerpo necesita ritmo para sanar. Sin estructura (Vihara), la energía se dispersa.',
-                    action: 'Determina los cinco puntos de anclaje en tu día' 
+                    msg: 'Tus rutinas necesitan orden. El cuerpo necesita ritmo para sanar. Sin estructura (Vihara), la energía se dispersa.',
+                    action: 'Descarga la "Planilla de Rutinas Circadianas" y comprométete a acostarte a la misma hora por 7 días.' 
                 },
                 { 
                     id: 'emo', 
@@ -421,8 +420,8 @@
                     color: 'text-pink-400',
                     bg: 'bg-pink-500/10',
                     border: 'border-pink-500/30',
-                    msg: 'Las emociones pueden actuar como un freno. Necesitas priorizar tus necesidades y la gestión emocional.',
-                    action: 'Tomate cinco minutos tres veces por día para realizar la respiración cuadrada ' 
+                    msg: 'Es momento de trabajar en cómo tus emociones impactan tu bienestar y descanso (Nidra).',
+                    action: 'Ve a la sección de "Meditaciones Guiadas" y realiza la práctica de "Limpieza Emocional" antes de dormir.' 
                 },
                 { 
                     id: 'esp', 
@@ -431,19 +430,20 @@
                     color: 'text-violet-400',
                     bg: 'bg-violet-500/10',
                     border: 'border-violet-500/30',
-                    msg: 'Debemos buscar claridad en el propósito (Manas). Cuando el "para qué" es fuerte, el "cómo" se vuelve fácil.',
-                    action: 'Ejercitar con la técnica de los siete porqués' 
+                    msg: 'Conectar con tu propósito (Manas) te dará la fuerza para sostener todos los demás cambios.',
+                    action: 'Reserva la próxima sesión en vivo de preguntas y respuestas para trabajar tu Propósito con el Dr. Nicasio.' 
                 }
             ];
 
             // Ordenar ascendente (menor a mayor puntaje)
+            // Esto coloca arriba la de menor puntaje (mayor prioridad)
             scores.sort((a, b) => a.val - b.val);
 
             // Generar HTML de la ruta ordenada
             const container = document.getElementById('roadmapContainer');
             container.innerHTML = ''; // Limpiar anterior
 
-                       scores.forEach((item, index) => {
+            scores.forEach((item, index) => {
                 const stepNum = index + 1;
                 // Definir trimestre sugerido
                 let timeline = "";
@@ -474,7 +474,8 @@
                                     ${stepNum}
                                 </div>
                                 <div>
-                                    <p class="text-[10px] font-black ${item.color} uppercase tracking-widest mb-1">${priorityLabel} • ${timeline}</p>
+                                    <p class="text-[10px] font-black ${item.color} uppercase tracking-widest">${priorityLabel}</p>
+                                    <p class="text-xs font-bold text-stone-500 uppercase tracking-widest mb-1">${timeline}</p>
                                     <h3 class="text-2xl font-bold text-white">${item.name}</h3>
                                 </div>
                             </div>
