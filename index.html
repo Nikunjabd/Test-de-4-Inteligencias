@@ -443,42 +443,59 @@
             const container = document.getElementById('roadmapContainer');
             container.innerHTML = ''; // Limpiar anterior
 
-            scores.forEach((item, index) => {
+                       scores.forEach((item, index) => {
                 const stepNum = index + 1;
                 // Definir trimestre sugerido
                 let timeline = "";
-                if(index === 0) timeline = "Meses 1-3 (Prioridad Alta)";
-                if(index === 1) timeline = "Meses 4-6";
-                if(index === 2) timeline = "Meses 7-9";
-                if(index === 3) timeline = "Meses 10-12";
+                let priorityLabel = "";
+                
+                if(index === 0) {
+                    timeline = "Meses 1 al 3";
+                    priorityLabel = "PRIORIDAD MÁXIMA";
+                }
+                if(index === 1) {
+                    timeline = "Meses 4 al 6";
+                    priorityLabel = "SEGUNDA FASE";
+                }
+                if(index === 2) {
+                    timeline = "Meses 7 al 9";
+                    priorityLabel = "TERCERA FASE";
+                }
+                if(index === 3) {
+                    timeline = "Meses 10 al 12";
+                    priorityLabel = "FASE DE INTEGRACIÓN";
+                }
 
                 const html = `
-                    <div class="bg-stone-800 rounded-xl p-6 border-l-4 ${item.border.replace('/30','')} relative overflow-hidden">
+                    <div class="bg-stone-800 rounded-xl p-6 border-l-4 ${item.border.replace('/30','')} relative overflow-hidden transition hover:bg-stone-800/80">
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                             <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-full ${item.bg} ${item.color} flex items-center justify-center font-bold text-xl border ${item.border}">
+                                <div class="w-12 h-12 rounded-full ${item.bg} ${item.color} flex items-center justify-center font-bold text-2xl border ${item.border}">
                                     ${stepNum}
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-bold text-white">${item.name}</h3>
-                                    <p class="text-xs font-bold ${item.color} uppercase tracking-wider">${timeline}</p>
+                                    <p class="text-[10px] font-black ${item.color} uppercase tracking-widest mb-1">${priorityLabel} • ${timeline}</p>
+                                    <h3 class="text-2xl font-bold text-white">${item.name}</h3>
                                 </div>
                             </div>
-                            <div class="text-right">
-                                <span class="text-3xl font-black text-stone-500 opacity-30">Puntaje: ${item.val}</span>
+                            <div class="flex flex-col items-end">
+                                <span class="text-xs font-bold text-stone-400 uppercase tracking-widest">Puntaje</span>
+                                <span class="text-5xl font-black text-amber-600">${item.val}</span>
                             </div>
                         </div>
                         
-                        <p class="text-stone-300 mb-4 leading-relaxed pl-14">
+                        <p class="text-stone-300 mb-6 leading-relaxed pl-16 text-lg">
                             ${item.msg}
                         </p>
                         
-                        <div class="ml-14 bg-stone-900/50 p-4 rounded-lg border border-stone-700/50">
-                            <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-1">ACCIÓN SUGERIDA:</p>
-                            <p class="text-white font-medium flex items-start gap-2">
-                                <svg class="w-5 h-5 ${item.color} flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                                ${item.action}
-                            </p>
+                        <div class="ml-16 bg-stone-900/50 p-4 rounded-xl border border-stone-700/50 flex items-start gap-3">
+                            <svg class="w-6 h-6 ${item.color} flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            <div>
+                                <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-1">ACCIÓN SUGERIDA:</p>
+                                <p class="text-white font-medium">
+                                    ${item.action}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 `;
